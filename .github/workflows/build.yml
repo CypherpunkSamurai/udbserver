@@ -19,3 +19,8 @@ jobs:
       run: |
         cd build
         dir
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: build
+        path: build\
