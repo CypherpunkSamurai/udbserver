@@ -1,0 +1,21 @@
+name: Rust
+
+on: [push]
+
+jobs:
+  test_Windows:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: |
+        cargo install cargo-c
+        mkdir build
+        mkdir win
+        cargo cinstall --release --prefix=win --destdir build
+
+    - name: List Files
+      run: |
+        cd build
+        dir
