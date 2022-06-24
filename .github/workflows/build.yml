@@ -12,13 +12,16 @@ jobs:
     - name: setup-msbuild
       uses: microsoft/setup-msbuild@v1.1
 
+    - name: Enable NMake
+      uses: ilammy/msvc-dev-cmd@v1
+
     - name: Build unicorn engine
       run: |
         git clone https://github.com/unicorn-engine/unicorn unicorn_engine
         cd unicorn_engine
         mkdir build; cd build
-        cmake .. -G "Visual Studio 16 2019" -A "win32" -DCMAKE_BUILD_TYPE=Release
-        msbuild unicorn.sln -p:Plaform=Win32 -p:Configuration=Release
+        cmake .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release
+        nmake
 
     - name: Install build tool
       run: |
