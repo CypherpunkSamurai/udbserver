@@ -8,6 +8,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    
+    - name: setup-msbuild
+      uses: microsoft/setup-msbuild@v1.1
 
     - name: Build unicorn engine
       run: |
