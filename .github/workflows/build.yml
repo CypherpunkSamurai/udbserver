@@ -11,6 +11,8 @@ jobs:
 
     - name: Build unicorn engine
       run: |
+        git clone https://github.com/unicorn-engine/unicorn unicorn_engine
+        cd unicorn_engine
         mkdir build
         cd build
         cmake .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release
