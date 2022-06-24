@@ -8,10 +8,21 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Build
+
+    - name: Build unicorn engine
+      run: |
+        mkdir build
+        cd build
+        cmake .. -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release
+        nmake
+
+    - name: Install build tool
       run: |
         cargo install cargo-c
         mkdir build
+
+    - name: Build udbserver
+      run: |
         mkdir win
         cargo cinstall --release --prefix=win --destdir build
 
