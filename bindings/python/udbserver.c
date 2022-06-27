@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <Python.h>
 
-#include <udbserver.h>
+#include "udbserver.h"
 
 static PyObject* _udbserver(PyObject *self, PyObject *args) {
     PyObject *uc;
