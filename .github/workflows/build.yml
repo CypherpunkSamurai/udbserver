@@ -15,6 +15,8 @@ jobs:
     - name: Enable NMake
       uses: ilammy/msvc-dev-cmd@v1
 
+    - uses: Swatinem/rust-cache@v1
+
     - name: Install build tool
       run: |
         cargo install cargo-c
@@ -24,6 +26,8 @@ jobs:
       run: |
         mkdir win
         cargo cinstall --release --prefix=win --destdir build
+
+    - uses: Swatinem/rust-cache@v1
 
     - name: List Files
       run: |
@@ -41,11 +45,13 @@ jobs:
     
     - name: Install venv
       run: |
+        cp build\win\include\udbserver.h bindings\python\
         cd bindings\python
         pip install virtualenv
         python -m venv pbind
         pbind\Scripts\activate.bat
         python setup.py build
+        cp 
         python setup.py install
 
     - uses: actions/upload-artifact@v3
