@@ -27,8 +27,6 @@ jobs:
         mkdir win
         cargo cinstall --release --prefix=win --destdir build
 
-    - uses: Swatinem/rust-cache@v1
-
     - name: List Files
       run: |
         dir build
@@ -51,10 +49,14 @@ jobs:
         python -m venv pbind
         pbind\Scripts\activate.bat
         python setup.py build
-        cp 
         python setup.py install
 
     - uses: actions/upload-artifact@v3
       with:
         name: python-binding
         path: ./bindings/python/
+        
+    - uses: actions/upload-artifact@v3
+      with:
+        name: repo
+        path: ./
