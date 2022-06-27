@@ -33,3 +33,22 @@ jobs:
       with:
         name: build
         path: ./build/
+
+    - name: Setup Python
+      uses: actions/setup-python@v4.0.0
+      with:
+        python-version: 3.9.7
+    
+    - name: Install venv
+      run: |
+        cd bindings\python
+        pip install virtualenv
+        python -m venv pbind
+        pbind\Scripts\activate.bat
+        python setup.py build
+        python setup.py install
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: python-binding
+        path: ./bindings/python/
