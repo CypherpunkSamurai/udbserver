@@ -35,10 +35,9 @@ jobs:
 
     - name: List Files
       run: |
-        cd build
-        dir
+        dir build
 
     - uses: actions/upload-artifact@v3
       with:
         name: build
-        path: build\
+        path: ./build/
